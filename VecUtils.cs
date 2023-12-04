@@ -25,6 +25,12 @@ public class VecUtils
         return vector.Normalized() * magnitude;
     }
 
+    public static Vector2 ClampMagnitude(Vector2 vector, float maxLength)
+    {
+        float magnitude = Mathf.Min(vector.Length(), maxLength);
+        return vector.Normalized() * magnitude;
+    }
+
     public static Vector3 Cross(Vector3 lhs, Vector3 rhs)
     {
         return lhs.Cross(rhs);
