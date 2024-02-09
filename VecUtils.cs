@@ -36,6 +36,11 @@ public class VecUtils
         return lhs.Cross(rhs);
     }
 
+    public static float Distance(Vector2 a, Vector2 b)
+    {
+        return a.DistanceTo(b);
+    }
+
     public static float Distance(Vector3 a, Vector3 b)
     {
         return a.DistanceTo(b);
