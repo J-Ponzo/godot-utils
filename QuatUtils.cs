@@ -51,7 +51,17 @@ public class QuatUtils
 
     public static Quaternion LookRotation(Vector3 forward, Vector3 upwards)
     {
-        throw new NotImplementedException();
+        return Transform3D.Identity.LookingAt(forward, upwards).Basis.GetRotationQuaternion();
+    }
+
+    public static Vector3 LookRotationEuler(Vector3 forward)
+    {
+        return LookRotationEuler(forward, VecUtils.up);
+    }
+
+    public static Vector3 LookRotationEuler(Vector3 forward, Vector3 upwards)
+    {
+        return Transform3D.Identity.LookingAt(forward, upwards).Basis.GetEuler();
     }
 
     public static Quaternion Normalize(Quaternion q)
