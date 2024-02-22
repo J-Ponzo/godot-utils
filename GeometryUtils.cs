@@ -15,6 +15,11 @@ public class GeometryUtils
         if (!GeometryUtils.IsLocationInCircle(location, coneOrigin, coneRange))
             return false;
 
+        return GeometryUtils.IsLocationInEndlessCone(location, coneOrigin, coneDircection, coneHalfAngle);
+    }
+
+    public static bool IsLocationInEndlessCone(Vector2 location, Vector2 coneOrigin, Vector2 coneDircection, float coneHalfAngle)
+    {
         float angle = Mathf.Abs(Mathf.RadToDeg(coneDircection.AngleTo((location - coneOrigin).Normalized())));
         return angle < coneHalfAngle;
     }
