@@ -1,8 +1,9 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
-public class NodeUtils
+public static class NodeUtils
 {
     public static List<T> FindNodesInChildren<T>(Node node) where T : Node
     {
@@ -25,5 +26,11 @@ public class NodeUtils
             tNodes.AddRange(FindNodesInParents<T>(parent));
 
         return tNodes;
+    }
+
+    public static async void Invoke(this Node node, string methodName, float time, params Variant[] args)
+    {
+        await node.ToSignal(node.GetTree().CreateTimer(time), "timeout");
+        node.Call(methodName, args);
     }
 }
