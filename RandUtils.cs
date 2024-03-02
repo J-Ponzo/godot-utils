@@ -25,7 +25,8 @@ public class RandUtils
     public static int RandomRange(int minInclusive, int maxExclusive)
     {
         float rand = GD.RandRange(minInclusive, maxExclusive);
-        if (rand == maxExclusive) rand--;
-        return (int)rand;
+        int value = (int)rand;
+        if (value == maxExclusive) value--;
+        return value;
     }
 }
