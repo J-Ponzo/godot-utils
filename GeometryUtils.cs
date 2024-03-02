@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public class GeometryUtils
 {
@@ -27,5 +28,18 @@ public class GeometryUtils
     public static bool IsLocationInCircle(Vector2 location, Vector2 center, float radius)
     {
         return location.DistanceTo(center) < radius;
+    }
+
+    public static List<T> AreLocationsInCircle<T>(List<T> elements, Func<T, Vector2> getLocation, Vector2 center, float radius)
+    {
+        List<T> result = new List<T>();
+        foreach (T element in elements)
+        {
+            Vector2 location = getLocation(element);
+            if (IsLocationInCircle(location, center, radius))
+                result.Add(element);
+        }
+
+        return result;
     }
 }
