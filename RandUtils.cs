@@ -29,4 +29,18 @@ public class RandUtils
         if (value == maxExclusive) value--;
         return value;
     }
+
+    public static int RandomIdxFromProbaTable(float[] normalizedProbas)
+    {
+        float r = GD.Randf();
+        float accumulatedPropas = 0f;
+        for(int i = 0; i < normalizedProbas.Length; i++)
+        {
+            float nxtAccumulatedProba = accumulatedPropas + normalizedProbas[i];
+            if (r > accumulatedPropas && r < nxtAccumulatedProba) return i;
+            accumulatedPropas = nxtAccumulatedProba;
+        }
+
+        return -1;
+    }
 }
