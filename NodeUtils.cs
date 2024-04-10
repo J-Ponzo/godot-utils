@@ -5,21 +5,21 @@ using System.Threading.Tasks;
 
 public static class NodeUtils
 {
-    public static List<T> FindNodesInChildren<T>(Node node) where T : Node
+    public static List<T> FindNodesInChildren<T>(Node node, bool includeCurrent = true) where T : Node
     {
         List<T> tNodes = new List<T>();
 
-        if (node is T) tNodes.Add((T)node);
+        if (includeCurrent && node is T) tNodes.Add((T)node);
         foreach(Node child in node.GetChildren())
             tNodes.AddRange(FindNodesInChildren<T>(child));
 
         return tNodes;
     }
 
-    public static List<T> FindNodesInParents<T>(Node node) where T : Node
+    public static List<T> FindNodesInParents<T>(Node node, bool includeCurrent = true) where T : Node
     {
         List<T> tNodes = new List<T>();
-        if (node is T) tNodes.Add((T)node);
+        if (includeCurrent && node is T) tNodes.Add((T)node);
 
         Node parent = node.GetParent();
         if (parent != null)
