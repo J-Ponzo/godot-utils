@@ -34,6 +34,16 @@ public static class NodeUtils
         return tNodes;
     }
 
+    public static bool HasParentQueuedForDeletion(Node node)
+    {
+        if (node.IsQueuedForDeletion()) return true;
+
+        Node parent = node.GetParent();
+        if (parent != null) return HasParentQueuedForDeletion(parent);
+
+        return false;
+    }
+
     public static async void Invoke(this Node node, string methodName, float time, params Variant[] args)
     {
         await node.ToSignal(node.GetTree().CreateTimer(time), "timeout");
